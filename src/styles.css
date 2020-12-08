@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@500&display=swap");
+
+:root {
+  --primary-color: #60a5fa;
+}
+body {
+  font-family: "Karla", sans-serif;
+  margin: 0rem;
+}
+.App {
+  text-align: center;
+}
+nav {
+  padding: 1.5rem;
+  font-size: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+}
+input {
+  margin-top: 3rem;
+  width: 80%;
+  padding: 1rem;
+  font-size: 1rem;
+}
+.meaning {
+  width: 20vw;
+  height: 12vh;
+  border: 1px solid black;
+  margin: auto;
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+h2 {
+  margin-top: 3rem;
+}
+h3 {
+  margin-top: 5rem;
+}
