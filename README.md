@@ -1,7 +1,7 @@
 # What's this food - A food emoji interpreter
 
 <div align="center">
-  <img alt="screenshot of rabitube" src="https://i.imgur.com/dcnZJ6A.gif">
+  <img alt="screenshot of whatsthisfood" src="https://i.imgur.com/dcnZJ6A.gif">
 </div>
 
 ![](https://img.shields.io/website?url=https%3A%2Fwhatsthisfood.netlify.app)
