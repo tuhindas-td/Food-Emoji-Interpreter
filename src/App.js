@@ -1,4 +1,8 @@
 import { useState } from "react";
+import EmojiMeaning from "./components/EmojiMeaning";
+import EmojiSearchbar from "./components/EmojiSearchbar";
+import FoodEmoji from "./components/FoodEmoji";
+import Footer from "./components/Footer";
 import "./styles.css";
 
 const emojiDictionary = {
@@ -13,43 +17,53 @@ const emojiDictionary = {
   "🍨": "Ice cream",
   "🎂": "Birthday cake",
 };
-var emojisWeKnow = Object.keys(emojiDictionary);
 
-export default function App() {
-  const [meaning, setMeaning] = useState("");
+const emojis = Object.keys(emojiDictionary);
 
-  function emojiInputHandler(event) {
-    var userInput = event.target.value;
-    var meaning = emojiDictionary[userInput];
-    if (meaning === undefined) {
-      meaning = "We dont have it in our database.";
+const App = () => {
+  const [emojiMeaning, setEmojiMeaning] = useState("");
+
+  const handleEmojiInput = (e) => {
+    const userInput = e.target.value;
+    let meaning = emojiDictionary[userInput];
+    if (!meaning && userInput === "") {
+      meaning = "";
+    } else if (!meaning) {
+      meaning = "Unknown emoji";
     }
-    setMeaning(meaning);
-  }
+    setEmojiMeaning(meaning);
+  };
 
-  function emojiClickHandler(emoji) {
-    var meaning = emojiDictionary[emoji];
-    setMeaning(meaning);
-  }
+  const handleEmojiClick = (emoji) => {
+    const meaning = emojiDictionary[emoji];
+    setEmojiMeaning(meaning);
+  };
 
   return (
-    <div className="App">
-      <nav>Food Emoji Interpreter</nav>
-      <input placeholder="Enter your emoji here" onChange={emojiInputHandler}></input>
-      <h2><span style={{color: "var(--primary-color"}}>Meaning</span> will show up here 👇</h2>
-      <div className="meaning">{meaning}</div>
-      <h3>Emojis We Know</h3>
-      {emojisWeKnow.map((emoji) => {
-        return (
-          <span
-            onClick={() => emojiClickHandler(emoji)}
-            style={{ fontSize: "2rem", padding: "0.5rem", cursor: "pointer" }}
-            key={emoji}
-          >
-            {emoji}
-          </span>
-        );
-      })}
+    <div className="container">
+      <nav className="navbar">What's this food 🤔</nav>
+      <div className="wrapper">
+        <EmojiSearchbar onInput={handleEmojiInput} />
+        <div className="meaning-container">
+          <EmojiMeaning meaning={emojiMeaning} />
+          <button className="button" onClick={() => setEmojiMeaning("")}>
+            Clear
+          </button>
+        </div>
+        <div>
+          <div className="emoji-list-heading">Emojis known to us</div>
+          <ul className="emoji-list-container">
+            {emojis.map((emoji, i) => {
+              return (
+                <FoodEmoji key={i} emoji={emoji} onClick={handleEmojiClick} />
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
-}
+};
+
+export default App;
